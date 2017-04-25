@@ -5,7 +5,7 @@ var minY = 0;
 var maxY = minY + 3 * size;
 var holeY = maxY;
 var holeX = maxX; 
-var pieces = new Array();
+var pieces = [];
 window.onload = function() {
 	var puzzle = document.getElementById("puzzlearea");
 	document.getElementById("controls").onclick = shuffle;
@@ -35,10 +35,10 @@ window.onload = function() {
 			id++;
 		}
 	}
-}
+};
 
 function movePiece(){
-	movePieceHelper(this)
+	movePieceHelper(this);
 }
 
 function movePieceHelper(movingPiece ){
@@ -62,7 +62,7 @@ function movePieceHelper(movingPiece ){
 }
 
 function getNeighbors(holeX, holeY, pieces) { 
-	var retVal = new Array();
+	var retVal = [];
 	for (var i = 0; i < pieces.length; i++) {
 		if (movable(pieces[i])){
 			retVal.push(pieces[i]);
@@ -71,12 +71,6 @@ function getNeighbors(holeX, holeY, pieces) {
 	return retVal;
 }
 
-function realNumber(number){
-	if (number < 0 || number > 15) {
-		return 0;
-	}
-	return number;
-}
 function movable(piece){
 	return (movable_down(piece) || movable_up(piece) || movable_right(piece) || movable_left(piece));
 }
@@ -127,7 +121,7 @@ function shuffle(){
 }
 
 function shuffleHelper(pieces){
-	i = Math.floor(Math.random() * pieces.length)
+	var i = Math.floor(Math.random() * pieces.length);
 	movePieceHelper(pieces[i]);
 }
 
@@ -141,3 +135,4 @@ function hover(){
 function noHover(){
 	this.style.borderColor = "black";
 }
+
